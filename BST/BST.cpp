@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+
 using namespace std;
 struct node
 {
@@ -14,10 +15,10 @@ private:
 
 public:
     void DodajElemntDoDrzewa(int klucz);
-    void WyswietlDrzewo(node* korzen);
+    void WyswietlDrzewo();
     void UsunElemntZDrzewa(int klucz);
-    void UsunDrzewo(node* korzen);
-    void SzukajDrogiDoPodanegoElemntu(node* korzen, int klucz);
+    void UsunDrzewo(node * u);
+    void SzukajDrogiDoPodanegoElemntu( int klucz);
 
 
 
@@ -70,21 +71,34 @@ void drzewo::DodajElemntDoDrzewa(int klucz)
 	}
 }
 
-void drzewo::WyswietlDrzewo(node* korzen)
+void drzewo::WyswietlDrzewo()
 {
-
-
+   
 }
+
 
 void drzewo::UsunElemntZDrzewa(int klucz)
 {
+    //uswanie elemtu z drzewa
+
+
+
+
+
 }
 
-void drzewo::UsunDrzewo(node* korzen)
+void drzewo::UsunDrzewo(node * u)
+
 {
+    if (u)
+    {
+        UsunDrzewo(u->lewo);
+        UsunDrzewo(u->prawo);
+        delete u;
+    }
 }
 
-void drzewo::SzukajDrogiDoPodanegoElemntu(node* korzen, int klucz)
+void drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
 }
 
