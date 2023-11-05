@@ -50,7 +50,7 @@ void drzewo::DodajElementDoDrzewa(int klucz)
     }
 }
 
-void drzewo::WyswietlDrzewo(node* korzen)
+void drzewo::WyswietlDrzewo()
 {
 
 
@@ -60,10 +60,10 @@ void drzewo::UsunElemntZDrzewa(int klucz)
 {
 }
 
-void drzewo::UsunDrzewo(node* korzen)
+void drzewo::UsunDrzewo()
 {
 }
 
-void drzewo::SzukajDrogiDoPodanegoElemntu(node* korzen, int klucz)
+void drzewo::SzukajDrogiDoPodanegoElemntu(int klucz)
 {
 }
