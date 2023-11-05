@@ -10,76 +10,100 @@ struct node
 class drzewo
 {
 private:
-    node* korzen;
+    
     unsigned counter;
 
 public:
     void DodajElemntDoDrzewa(int klucz);
-    void WyswietlDrzewo();
+    void WyswietlDrzewo(node *w);
     void UsunElemntZDrzewa(int klucz);
     void UsunDrzewo(node * u);
     void SzukajDrogiDoPodanegoElemntu( int klucz);
 
-
+node* korzen;
 
 };
 
 void drzewo::DodajElemntDoDrzewa(int klucz)
 {
     node* nowy = new node;
-    
     nowy->lewo = NULL;
     nowy->prawo = NULL;
     nowy->klucz = klucz;
+
     if (!korzen)
     {
-		korzen = nowy;
+        korzen = nowy;
+    }
+    else
+    {
+        node* aktualny = korzen;
+        while (true)
+        {
+            if (klucz < aktualny->klucz)
+            {
+                if (!aktualny->lewo)
+                {
+                    aktualny->lewo = nowy;
+                    break;
+                }
+                else
+                {
+                    aktualny = aktualny->lewo;
+                }
+            }
+            else
+            {
+                if (!aktualny->prawo)
+                {
+                    aktualny->prawo = nowy;
+                    break;
+                }
+                else
+                {
+                    aktualny = aktualny->prawo;
+                }
+            }
+        }
+    }
+}
+
+
+void drzewo::WyswietlDrzewo(node*w)
+{
+    cout << w->klucz << ":Lewy =";
+    if (w->lewo)
+    {
+		cout << w->lewo->klucz;
 	}
     else
     {
-		
-        while (true)
-        {
-            if (klucz < korzen->klucz)
-            {
-                if (!korzen->lewo)
-                {
-					korzen->lewo=korzen;
-                    break;
-				}
-                else
-                {
-					korzen=korzen->lewo;
-				}
-			}
-            else  
-            {
-                if (!korzen->prawo)
-                {
-					korzen ->prawo=korzen;
-                    break;
-				}
-                else
-                {
-                    korzen = korzen->prawo;
-				}
-			}
-        
-           
-			
-		}
+		cout << "NULL";
 	}
-}
-
-void drzewo::WyswietlDrzewo()
-{
-   
+    cout << "Prawy =";
+    if (w->prawo)
+    {
+		cout << w->prawo->klucz;
+	}
+    else
+    {
+		cout << "NULL";
+	}
+	cout << endl;
+    if (w->lewo)
+    {
+		WyswietlDrzewo(w->lewo);
+	}
+    if (w->prawo)
+    {
+		WyswietlDrzewo(w->prawo);
+	}
 }
 
 
 void drzewo::UsunElemntZDrzewa(int klucz)
 {
-    //uswanie elemtu z drzewa
+    
 
 
 
@@ -100,5 +124,7 @@ void drzewo::UsunDrzewo(node * u)
 
 void drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
+
 }
+
 
