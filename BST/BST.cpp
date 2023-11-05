@@ -1,9 +1,9 @@
 ﻿#include <iostream>
-#include "drzewo.h"
+#include "BST.h"
 
 using namespace std;
 
-void drzewo::DodajElemntDoDrzewa(int klucz)
+void drzewo::DodajElementDoDrzewa(int klucz)
 {
     node* nowy = new node;
 

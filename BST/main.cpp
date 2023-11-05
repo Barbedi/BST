@@ -4,5 +4,6 @@
 using namespace std;
 
 int main() {
-	cout << "Hello world!";
+	drzewo d1;
+	d1.DodajElementDoDrzewa(2);
 }

@@ -13,7 +13,7 @@ private:
 	node* korzen;
 	unsigned counter;
 public:
-	void DodajElemntDoDrzewa(int klucz);
+	void DodajElementDoDrzewa(int klucz);
 	void WyswietlDrzewo(node* korzen);
 	void UsunElemntZDrzewa(int klucz);
 	void UsunDrzewo(node* korzen);
