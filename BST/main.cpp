@@ -39,7 +39,7 @@ int main() {
             break;
 
         case 4:
-            cout << "Podaj wartosc do znalezienia drogi: ";
+            cout << "Podaj wartosc do znalezienia drogi: " << endl;
             cin >> klucz;
             d1.SzukajDrogiDoPodanegoElemntu(klucz);
             break;
@@ -49,19 +49,19 @@ int main() {
             break;
 
         case 6:
-            cout << "Odczyt z pliku";
+            cout << "Odczyt z pliku" << endl;
             break;
 
         case 7:
-            cout << "Zapis do pliku";
+            cout << "Zapis do pliku" << endl;
             break;
 
         case 0:
-            cout << "Zakonczono program.";
+            cout << "Zakonczono program." << endl;
             break;
 
         default:
-            cout << "Nieprawidlowa opcja. Sprobuj ponownie.";
+            cout << "Nieprawidlowa opcja. Sprobuj ponownie." << endl;
             break;
         }
     } while (c != 0);
