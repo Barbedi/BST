@@ -1,8 +1,69 @@
 ﻿#include <iostream>
+#include "BST.h"
 
 using namespace std;
 
-int main()
+void drzewo::DodajElementDoDrzewa(int klucz)
 {
-    cout << "Hello World!\n";
+    node* nowy = new node;
+
+    nowy->lewo = NULL;
+    nowy->prawo = NULL;
+    nowy->klucz = klucz;
+    if (!korzen)
+    {
+        korzen = nowy;
+    }
+    else
+    {
+
+        while (true)
+        {
+            if (klucz < korzen->klucz)
+            {
+                if (!korzen->lewo)
+                {
+                    korzen->lewo = korzen;
+                    break;
+                }
+                else
+                {
+                    korzen = korzen->lewo;
+                }
+            }
+            else
+            {
+                if (!korzen->prawo)
+                {
+                    korzen->prawo = korzen;
+                    break;
+                }
+                else
+                {
+                    korzen = korzen->prawo;
+                }
+            }
+
+
+
+        }
+    }
+}
+
+void drzewo::WyswietlDrzewo()
+{
+
+
+}
+
+void drzewo::UsunElemntZDrzewa(int klucz)
+{
+}
+
+void drzewo::UsunDrzewo()
+{
+}
+
+void drzewo::SzukajDrogiDoPodanegoElemntu(int klucz)
+{
 }
