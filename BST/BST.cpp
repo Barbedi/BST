@@ -1,9 +1,8 @@
 ﻿#include <iostream>
-#include "BST.h"    
+
+#include "BST.h"
 
 using namespace std;
-
-
 
 void drzewo::DodajElementDoDrzewa(int klucz)
 {
@@ -51,8 +50,6 @@ void drzewo::DodajElementDoDrzewa(int klucz)
         }
     }
 }
-
-
 
 void drzewo::WyswietlDrzewo(node*w)
 {
@@ -111,5 +108,6 @@ void drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
 
 }
+
 
 
