@@ -11,14 +11,17 @@ struct node
 
 class drzewo {
 private:
-	node* korzen;
+
 	unsigned counter;
 public:
 	drzewo() : korzen(NULL), counter(0) {}
 	void DodajElementDoDrzewa(int klucz);
-	void WyswietlDrzewo();
+
+	void WyswietlDrzewo(node *w);
 	void UsunElemntZDrzewa(int klucz);
-	void UsunDrzewo();
+	void UsunDrzewo(node * u);
 	void SzukajDrogiDoPodanegoElemntu(int klucz);
+	node * korzen;
 };
-#endif // !drzewo
+#endif // !drzewo#pragma once
+
