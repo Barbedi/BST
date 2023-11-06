@@ -1,72 +1,57 @@
 ﻿#include <iostream>
+#include "BST.h"    
 
 using namespace std;
-struct node
-{
-    node* lewo, * prawo;
-    int klucz;
-};
 
-class drzewo
-{
-private:
-    
-    unsigned counter;
 
-public:
-    void DodajElemntDoDrzewa(int klucz);
-    void WyswietlDrzewo(node *w);
-    void UsunElemntZDrzewa(int klucz);
-    void UsunDrzewo(node * u);
-    void SzukajDrogiDoPodanegoElemntu( int klucz);
 
-node* korzen;
-
-};
-
-void drzewo::DodajElemntDoDrzewa(int klucz)
+void drzewo::DodajElementDoDrzewa(int klucz)
 {
     node* nowy = new node;
+
     nowy->lewo = NULL;
     nowy->prawo = NULL;
     nowy->klucz = klucz;
-
     if (!korzen)
     {
         korzen = nowy;
     }
     else
     {
-        node* aktualny = korzen;
+
         while (true)
         {
-            if (klucz < aktualny->klucz)
+            if (klucz < korzen->klucz)
             {
-                if (!aktualny->lewo)
+                if (!korzen->lewo)
                 {
-                    aktualny->lewo = nowy;
+                    korzen->lewo = korzen;
                     break;
                 }
                 else
                 {
-                    aktualny = aktualny->lewo;
+                    korzen = korzen->lewo;
                 }
             }
             else
             {
-                if (!aktualny->prawo)
+                if (!korzen->prawo)
                 {
-                    aktualny->prawo = nowy;
+                    korzen->prawo = korzen;
                     break;
                 }
                 else
                 {
-                    aktualny = aktualny->prawo;
+                    korzen = korzen->prawo;
                 }
             }
+
+
+
         }
     }
 }
+
 
 
 void drzewo::WyswietlDrzewo(node*w)
