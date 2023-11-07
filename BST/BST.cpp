@@ -51,6 +51,35 @@ void drzewo::DodajElementDoDrzewa(int klucz)
     }
 }
 
+char* drzewo::ZwrocKlucze()
+{
+    char * klucze = new char[counter];
+    if (korzen)
+    {
+        for (size_t i = 0; i < counter; i++)
+        {
+            klucze[i] = korzen->klucz;
+            if (korzen->lewo)
+            {
+				korzen = korzen->lewo;
+			}
+            else if (korzen->prawo)
+            {
+				korzen = korzen->prawo;
+			}
+            else
+            {
+				break;
+			}
+        }
+	}
+    else
+    {
+		cout << "Drzewo jest puste!" << endl;
+	}
+    return klucze;
+}
+
 void drzewo::WyswietlDrzewo(node*w)
 {
     cout << w->klucz << ":Lewy =";

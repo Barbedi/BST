@@ -1,10 +1,12 @@
 #include <iostream>
 #include "BST.h";
+#include "Plik.h";
 
 using namespace std;
 
 int main() {
 	drzewo d1;
+    Plik p1(&d1);
 
     int c;
     do {
@@ -35,7 +37,7 @@ int main() {
             break;
 
         case 3:
-            d1.UsunDrzewo();
+            d1.UsunDrzewo(d1.korzen);
             break;
 
         case 4:
@@ -45,7 +47,7 @@ int main() {
             break;
 
         case 5:
-            d1.WyswietlDrzewo();
+            d1.WyswietlDrzewo(d1.korzen);
             break;
 
         case 6:
@@ -54,6 +56,7 @@ int main() {
 
         case 7:
             cout << "Zapis do pliku" << endl;
+            p1.Zapisz("drzewo1");
             break;
 
         case 0:
