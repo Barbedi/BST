@@ -6,9 +6,7 @@ using namespace std;
 
 int main() {
 	Drzewo d1;
-    Drzewo d2;
     Plik p1(&d1);
-    Plik p2(&d2);
 
     int c;
     do {
@@ -31,33 +29,39 @@ int main() {
             cout << "Podaj wartosc do dodania: ";
             cin >> klucz;
             d1.DodajElementDoDrzewa(klucz);
+            cout << endl;
             break;
 
         case 2:
             cout << "Podaj wartosc do usuniecia: ";
             cin >> klucz;
             d1.UsunElemntZDrzewa(klucz);
+            cout << endl;
             break;
 
         case 3:
-            d1.UsunDrzewo(d1.korzen);
+            d1.UsunDrzewo();
+            cout << endl;
             break;
 
         case 4:
             cout << "Podaj wartosc do znalezienia drogi: " << endl;
             cin >> klucz;
             d1.SzukajDrogiDoPodanegoElemntu(klucz);
+            cout << endl;
             break;
 
         case 5:
             d1.WyswietlDrzewo(d1.korzen);
+            cout << endl;
             break;
 
         case 6:
             cout << "Podaj nazwe pliku: ";
             cin >> nazwaPliku;
             cout << "Odczytywanie z pliku " << nazwaPliku << "..." << endl;
-            p2.Wczytaj(nazwaPliku);
+            p1.Wczytaj(nazwaPliku);
+            cout << endl;
             break;
 
         case 7:
@@ -65,6 +69,7 @@ int main() {
             cin >> nazwaPliku;
             cout << "Zapisywanie do pliku " << nazwaPliku << "..." << endl;
             p1.Zapisz(nazwaPliku);
+            cout << endl;
             break;
 
         case 0:

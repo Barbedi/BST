@@ -47,46 +47,12 @@ void Drzewo::DodajElementDoDrzewa(int klucz)
     counter++;
 }
 
-char* Drzewo::ZwrocKlucze()
-{
-    char* klucze = new char[counter];
-    if (korzen)
-    {
-        for (size_t i = 0; i < counter; i++)
-        {
-            klucze[i] = korzen->klucz;
-            if (korzen->lewo)
-            {
-                korzen = korzen->lewo;
-            }
-            else if (korzen->prawo)
-            {
-                korzen = korzen->prawo;
-            }
-            else
-            {
-                break;
-            }
-        }
-    }
-    else
-    {
-        cout << "Drzewo jest puste!" << endl;
-    }
-    return klucze;
-}
-
-unsigned int Drzewo::ZwrocIloscElementow()
-{
-	return counter;
-}
-
 void Drzewo::WyswietlDrzewo()
 {
 	WyswietlDrzewo(korzen);
 }
 
-void drzewo::WyswietlDrzewo(node* w)
+void Drzewo::WyswietlDrzewo(node* w)
 {
     if (w != NULL) {
         WyswietlDrzewo(w->lewo);
@@ -95,6 +61,10 @@ void drzewo::WyswietlDrzewo(node* w)
     }
 }
 
+unsigned int Drzewo::ZwrocIloscElementow()
+{
+    return counter;
+}
 
 void Drzewo::UsunElemntZDrzewa(int klucz)
 {
@@ -150,7 +120,7 @@ void Drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
             cout << "P";
 			temp = temp->prawo;
 		}
-        if (temp = NULL) {
+        if (temp == NULL) {
            cout<<"nie znaleziono elementu"<<endl;
         }
 		
