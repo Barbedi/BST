@@ -19,9 +19,10 @@ public:
 	void DodajElementDoDrzewa(int klucz);
 	char* ZwrocKlucze();
 	unsigned ZwrocIloscElementow();
+	void WyswietlDrzewo();
 	void WyswietlDrzewo(node *w);
 	void UsunElemntZDrzewa(int klucz);
-	void UsunDrzewo(node * u);
+	void UsunDrzewo();
 	void SzukajDrogiDoPodanegoElemntu(int klucz);
 };
 #endif // !drzewo#pragma once

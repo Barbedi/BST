@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include "BST.h"
 
 using namespace std;
@@ -10,42 +10,38 @@ void Drzewo::DodajElementDoDrzewa(int klucz)
     nowy->lewo = NULL;
     nowy->prawo = NULL;
     nowy->klucz = klucz;
-    if (!korzen)
+    if (korzen==NULL)
     {
         korzen = nowy;
     }
     else
     {
-
-        while (true)
-        {
-            if (klucz < korzen->klucz)
+        node* temp = korzen;
+        while (temp != NULL) {
+            if (klucz < temp->klucz)
             {
-                if (!korzen->lewo)
+                if (temp->lewo == NULL)
                 {
-                    korzen->lewo = korzen;
-                    break;
-                }
+					temp->lewo = nowy;
+					break;
+				}
                 else
                 {
-                    korzen = korzen->lewo;
-                }
-            }
+					temp = temp->lewo;
+				}
+			}
             else
             {
-                if (!korzen->prawo)
+                if (temp->prawo == NULL)
                 {
-                    korzen->prawo = korzen;
-                    break;
-                }
+					temp->prawo = nowy;
+					break;
+				}
                 else
                 {
-                    korzen = korzen->prawo;
-                }
-            }
-
-
-
+					temp = temp->prawo;
+				}
+			}
         }
     }
     counter++;
@@ -85,61 +81,80 @@ unsigned int Drzewo::ZwrocIloscElementow()
 	return counter;
 }
 
-void Drzewo::WyswietlDrzewo(node*w)
+void Drzewo::WyswietlDrzewo()
 {
-    cout << w->klucz << ":Lewy =";
-    if (w->lewo)
-    {
-		cout << w->lewo->klucz;
-	}
-    else
-    {
-		cout << "NULL";
-	}
-    cout << "Prawy =";
-    if (w->prawo)
-    {
-		cout << w->prawo->klucz;
-	}
-    else
-    {
-		cout << "NULL";
-	}
-	cout << endl;
-    if (w->lewo)
-    {
-		WyswietlDrzewo(w->lewo);
-	}
-    if (w->prawo)
-    {
-		WyswietlDrzewo(w->prawo);
-	}
+	WyswietlDrzewo(korzen);
+}
+
+void drzewo::WyswietlDrzewo(node* w)
+{
+    if (w != NULL) {
+        WyswietlDrzewo(w->lewo);
+        cout << w->klucz << " ";
+        WyswietlDrzewo(w->prawo);
+    }
 }
 
 
 void Drzewo::UsunElemntZDrzewa(int klucz)
 {
-    
-
+    node*UElemnt = korzen;
+    while (UElemnt && UElemnt->klucz != klucz) {
+        UElemnt = (klucz < UElemnt->klucz) ? UElemnt->lewo : UElemnt->prawo;
+	}
+    if (!UElemnt) {
+        cout << "nie znaleziono elementu" << endl;
+        return;
+    }
+    if (UElemnt->lewo && UElemnt->prawo)
+    {
+		node* temp = UElemnt->prawo;
+        while (temp->lewo) {
+			temp = temp->lewo;
+		}
+		UElemnt->klucz = temp->klucz;
+		UElemnt = temp;
+	}
+    node* temp2 = UElemnt;
+    UElemnt = (UElemnt->lewo) ? UElemnt->lewo : UElemnt->prawo;
+    delete temp2;
+    cout<< "usunieto element" << endl;
 
 
 
 
 }
 
-void Drzewo::UsunDrzewo(node * u)
-
-{
-    if (u)
-    {
-        UsunDrzewo(u->lewo);
-        UsunDrzewo(u->prawo);
-        delete u;
+void Drzewo::UsunDrzewo(){
+    while (korzen!=NULL) {
+        UsunElemntZDrzewa(korzen->klucz);
     }
 }
 
 void Drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
+    node *temp = korzen;
+    while (temp != NULL) {
+        if (klucz < temp->klucz)
+        {
+            cout<<"znaleziono element: "<<endl;
+            break;
+        }
+        else if (klucz < temp->klucz)
+        {
+            cout << "L";
+			temp = temp->lewo;
+		}
+		else  
+		{
+            cout << "P";
+			temp = temp->prawo;
+		}
+        if (temp = NULL) {
+           cout<<"nie znaleziono elementu"<<endl;
+        }
+		
+    }
 
 }
 
