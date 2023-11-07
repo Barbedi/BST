@@ -47,7 +47,7 @@ void drzewo::DodajElementDoDrzewa(int klucz)
     }
 }
  
-void drzewo::wyswietl()
+void drzewo::WyswietlDrzewo()
 {
 	WyswietlDrzewo(korzen);
 }
