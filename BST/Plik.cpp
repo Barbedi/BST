@@ -10,9 +10,23 @@ void Plik::Zapisz(string nazwaPliku)
 		ofstream plik(nazwaPliku + ".bin", ios::binary);
 		if (plik)
 		{
-			char* klucze = tree->ZwrocKlucze();
+			int rozmiar = tree->ZwrocIloscElementow();
+			char* klucze = new char[rozmiar];
+
+			for (size_t i = 0; i < rozmiar; i++)
+			{
+				klucze[i] = tree->korzen->klucz;
+
+				if (tree->korzen->lewo) {
+					tree->korzen = tree->korzen->lewo;
+				}
+				else if (tree->korzen->prawo) {
+					tree->korzen = tree->korzen->prawo;
+				}
+			}
+
 			try {
-				plik.write(klucze, sizeof(klucze));
+				plik.write(klucze, rozmiar);
 				cout << "Zapis do pliku zakonczony" << endl;
 			}
 			catch (exception e) {

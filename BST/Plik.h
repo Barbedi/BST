@@ -10,6 +10,7 @@ private:
 	Drzewo* tree;
 
 public:
+	Plik() : tree(NULL) {}
 	Plik(Drzewo* tree) : tree(tree) {}
 	void Zapisz(std::string nazwaPliku);
 	void Wczytaj(std::string nazwaPliku);
