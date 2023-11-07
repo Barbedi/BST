@@ -63,8 +63,27 @@ void drzewo::WyswietlDrzewo(node* w)
 
 void drzewo::UsunElemntZDrzewa(int klucz)
 {
-    
-
+    node*UElemnt = korzen;
+    while (UElemnt && UElemnt->klucz != klucz) {
+        UElemnt = (klucz < UElemnt->klucz) ? UElemnt->lewo : UElemnt->prawo;
+	}
+    if (!UElemnt) {
+        cout << "nie znaleziono elementu" << endl;
+        return;
+    }
+    if (UElemnt->lewo && UElemnt->prawo)
+    {
+		node* temp = UElemnt->prawo;
+        while (temp->lewo) {
+			temp = temp->lewo;
+		}
+		UElemnt->klucz = temp->klucz;
+		UElemnt = temp;
+	}
+    node* temp2 = UElemnt;
+    UElemnt = (UElemnt->lewo) ? UElemnt->lewo : UElemnt->prawo;
+    delete temp2;
+    cout<< "usunieto element" << endl;
 
 
 
@@ -83,6 +102,28 @@ void drzewo::UsunDrzewo(node * u)
 
 void drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
+    node *temp = korzen;
+    while (temp != NULL) {
+        if (klucz < temp->klucz)
+        {
+            cout<<"znaleziono element: "<<endl;
+            break;
+        }
+        else if (klucz < temp->klucz)
+        {
+            cout << "L";
+			temp = temp->lewo;
+		}
+		else  
+		{
+            cout << "P";
+			temp = temp->prawo;
+		}
+        if (temp = NULL) {
+           cout<<"nie znaleziono elementu"<<endl;
+        }
+		
+    }
 
 }
 
