@@ -47,7 +47,7 @@ void drzewo::DodajElementDoDrzewa(int klucz)
     }
 }
  
-void drzewo::wyswietl()
+void drzewo::WyswietlDrzewo()
 {
 	WyswietlDrzewo(korzen);
 }
@@ -90,13 +90,9 @@ void drzewo::UsunElemntZDrzewa(int klucz)
 
 }
 
-void drzewo::UsunDrzewo(node * u)
-{
-    while (korzen) {
-        UsunDrzewo(korzen->lewo);
-		UsunDrzewo(korzen->prawo);
-		delete korzen;
-		korzen = NULL;
+void drzewo::UsunDrzewo(){
+    while (korzen!=NULL) {
+        UsunElemntZDrzewa(korzen->klucz);
     }
 }
 
