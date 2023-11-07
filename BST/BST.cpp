@@ -11,75 +11,53 @@ void drzewo::DodajElementDoDrzewa(int klucz)
     nowy->lewo = NULL;
     nowy->prawo = NULL;
     nowy->klucz = klucz;
-    if (!korzen)
+    if (korzen==NULL)
     {
         korzen = nowy;
     }
     else
     {
-
-        while (true)
-        {
-            if (klucz < korzen->klucz)
+        node* temp = korzen;
+        while (temp != NULL) {
+            if (klucz < temp->klucz)
             {
-                if (!korzen->lewo)
+                if (temp->lewo == NULL)
                 {
-                    korzen->lewo = korzen;
-                    break;
-                }
+					temp->lewo = nowy;
+					break;
+				}
                 else
                 {
-                    korzen = korzen->lewo;
-                }
-            }
+					temp = temp->lewo;
+				}
+			}
             else
             {
-                if (!korzen->prawo)
+                if (temp->prawo == NULL)
                 {
-                    korzen->prawo = korzen;
-                    break;
-                }
+					temp->prawo = nowy;
+					break;
+				}
                 else
                 {
-                    korzen = korzen->prawo;
-                }
-            }
-
-
-
+					temp = temp->prawo;
+				}
+			}
         }
     }
 }
-
-void drzewo::WyswietlDrzewo(node*w)
+ 
+void drzewo::wyswietl()
 {
-    cout << w->klucz << ":Lewy =";
-    if (w->lewo)
-    {
-		cout << w->lewo->klucz;
-	}
-    else
-    {
-		cout << "NULL";
-	}
-    cout << "Prawy =";
-    if (w->prawo)
-    {
-		cout << w->prawo->klucz;
-	}
-    else
-    {
-		cout << "NULL";
-	}
-	cout << endl;
-    if (w->lewo)
-    {
-		WyswietlDrzewo(w->lewo);
-	}
-    if (w->prawo)
-    {
-		WyswietlDrzewo(w->prawo);
-	}
+	WyswietlDrzewo(korzen);
+}
+void drzewo::WyswietlDrzewo(node* w)
+{
+    if (w != NULL) {
+        WyswietlDrzewo(w->lewo);
+        cout << w->klucz << " ";
+        WyswietlDrzewo(w->prawo);
+    }
 }
 
 
@@ -94,13 +72,12 @@ void drzewo::UsunElemntZDrzewa(int klucz)
 }
 
 void drzewo::UsunDrzewo(node * u)
-
 {
-    if (u)
-    {
-        UsunDrzewo(u->lewo);
-        UsunDrzewo(u->prawo);
-        delete u;
+    while (korzen) {
+        UsunDrzewo(korzen->lewo);
+		UsunDrzewo(korzen->prawo);
+		delete korzen;
+		korzen = NULL;
     }
 }
 
