@@ -5,8 +5,10 @@
 using namespace std;
 
 int main() {
-	drzewo d1;
+	Drzewo d1;
+    Drzewo d2;
     Plik p1(&d1);
+    Plik p2(&d2);
 
     int c;
     do {
@@ -23,6 +25,7 @@ int main() {
         cin >> c;
 
         int klucz = NULL;
+        string nazwaPliku;
         switch (c) {
         case 1:
             cout << "Podaj wartosc do dodania: ";
@@ -51,12 +54,17 @@ int main() {
             break;
 
         case 6:
-            cout << "Odczyt z pliku" << endl;
+            cout << "Podaj nazwe pliku: ";
+            cin >> nazwaPliku;
+            cout << "Odczytywanie z pliku " << nazwaPliku << "..." << endl;
+            p2.Wczytaj(nazwaPliku);
             break;
 
         case 7:
-            cout << "Zapis do pliku" << endl;
-            p1.Zapisz("drzewo1");
+            cout << "Podaj nazwe pliku: ";
+            cin >> nazwaPliku;
+            cout << "Zapisywanie do pliku " << nazwaPliku << "..." << endl;
+            p1.Zapisz(nazwaPliku);
             break;
 
         case 0:

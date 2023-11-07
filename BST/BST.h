@@ -9,15 +9,16 @@ struct node
 	int klucz;
 };
 
-class drzewo {
+class Drzewo {
 private:
 	unsigned counter;
 
 public:
 	node* korzen;
-	drzewo() : korzen(NULL), counter(0) {}
+	Drzewo() : korzen(NULL), counter(0) {}
 	void DodajElementDoDrzewa(int klucz);
 	char* ZwrocKlucze();
+	unsigned ZwrocIloscElementow();
 	void WyswietlDrzewo(node *w);
 	void UsunElemntZDrzewa(int klucz);
 	void UsunDrzewo(node * u);

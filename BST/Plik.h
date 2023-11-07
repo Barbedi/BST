@@ -7,11 +7,12 @@
 
 class Plik {
 private:
-	drzewo* tree;
+	Drzewo* tree;
 
 public:
-	Plik(drzewo* tree) : tree(tree) {}
+	Plik(Drzewo* tree) : tree(tree) {}
 	void Zapisz(std::string nazwaPliku);
+	void Wczytaj(std::string nazwaPliku);
 };
 
 #endif // !PLIK_H

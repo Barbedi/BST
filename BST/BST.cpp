@@ -1,10 +1,9 @@
 ﻿#include <iostream>
-
 #include "BST.h"
 
 using namespace std;
 
-void drzewo::DodajElementDoDrzewa(int klucz)
+void Drzewo::DodajElementDoDrzewa(int klucz)
 {
     node* nowy = new node;
 
@@ -49,11 +48,12 @@ void drzewo::DodajElementDoDrzewa(int klucz)
 
         }
     }
+    counter++;
 }
 
-char* drzewo::ZwrocKlucze()
+char* Drzewo::ZwrocKlucze()
 {
-    char * klucze = new char[counter];
+    char* klucze = new char[counter];
     if (korzen)
     {
         for (size_t i = 0; i < counter; i++)
@@ -61,26 +61,31 @@ char* drzewo::ZwrocKlucze()
             klucze[i] = korzen->klucz;
             if (korzen->lewo)
             {
-				korzen = korzen->lewo;
-			}
+                korzen = korzen->lewo;
+            }
             else if (korzen->prawo)
             {
-				korzen = korzen->prawo;
-			}
+                korzen = korzen->prawo;
+            }
             else
             {
-				break;
-			}
+                break;
+            }
         }
-	}
+    }
     else
     {
-		cout << "Drzewo jest puste!" << endl;
-	}
+        cout << "Drzewo jest puste!" << endl;
+    }
     return klucze;
 }
 
-void drzewo::WyswietlDrzewo(node*w)
+unsigned int Drzewo::ZwrocIloscElementow()
+{
+	return counter;
+}
+
+void Drzewo::WyswietlDrzewo(node*w)
 {
     cout << w->klucz << ":Lewy =";
     if (w->lewo)
@@ -112,7 +117,7 @@ void drzewo::WyswietlDrzewo(node*w)
 }
 
 
-void drzewo::UsunElemntZDrzewa(int klucz)
+void Drzewo::UsunElemntZDrzewa(int klucz)
 {
     
 
@@ -122,7 +127,7 @@ void drzewo::UsunElemntZDrzewa(int klucz)
 
 }
 
-void drzewo::UsunDrzewo(node * u)
+void Drzewo::UsunDrzewo(node * u)
 
 {
     if (u)
@@ -133,7 +138,7 @@ void drzewo::UsunDrzewo(node * u)
     }
 }
 
-void drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
+void Drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
 
 }
