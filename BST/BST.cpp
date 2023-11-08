@@ -1,10 +1,9 @@
-﻿#include <iostream>
-
+#include <iostream>
 #include "BST.h"
 
 using namespace std;
 
-void drzewo::DodajElementDoDrzewa(int klucz)
+void Drzewo::DodajElementDoDrzewa(int klucz)
 {
     node* nowy = new node;
 
@@ -45,12 +44,48 @@ void drzewo::DodajElementDoDrzewa(int klucz)
 			}
         }
     }
+    counter++;
 }
- 
-void drzewo::WyswietlDrzewo()
+
+char* Drzewo::ZwrocKlucze()
+{
+    char* klucze = new char[counter];
+    if (korzen)
+    {
+        for (size_t i = 0; i < counter; i++)
+        {
+            klucze[i] = korzen->klucz;
+            if (korzen->lewo)
+            {
+                korzen = korzen->lewo;
+            }
+            else if (korzen->prawo)
+            {
+                korzen = korzen->prawo;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    else
+    {
+        cout << "Drzewo jest puste!" << endl;
+    }
+    return klucze;
+}
+
+unsigned int Drzewo::ZwrocIloscElementow()
+{
+	return counter;
+}
+
+void Drzewo::WyswietlDrzewo()
 {
 	WyswietlDrzewo(korzen);
 }
+
 void drzewo::WyswietlDrzewo(node* w)
 {
     if (w != NULL) {
@@ -61,7 +96,8 @@ void drzewo::WyswietlDrzewo(node* w)
 }
 
 
-void drzewo::UsunElemntZDrzewa(int klucz) {
+
+void Drzewo::UsunElemntZDrzewa(int klucz) {
     node* temp = korzen;
     node* parent = NULL;
 
@@ -72,6 +108,7 @@ void drzewo::UsunElemntZDrzewa(int klucz) {
     }
     if (temp == NULL) {
         cout << "Nie znaleziono elementu" << endl;
+
         return;
     }
 
@@ -131,13 +168,15 @@ void drzewo::UsunElemntZDrzewa(int klucz) {
         delete temp2;
     }
 }
-void drzewo::UsunDrzewo(){
+
+void Drzewo::UsunDrzewo(){
+  
     while (korzen!=NULL) {
         UsunElemntZDrzewa(korzen->klucz);
     }
 }
 
-void drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
+void Drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
     node *temp = korzen;
     while (temp != NULL) {

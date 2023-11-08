@@ -9,19 +9,21 @@ struct node
 	int klucz;
 };
 
-class drzewo {
+class Drzewo {
 private:
-
 	unsigned counter;
+
 public:
-	drzewo() : korzen(NULL), counter(0) {}
+	node* korzen;
+	Drzewo() : korzen(NULL), counter(0) {}
 	void DodajElementDoDrzewa(int klucz);
+	char* ZwrocKlucze();
+	unsigned ZwrocIloscElementow();
 	void WyswietlDrzewo();
 	void WyswietlDrzewo(node *w);
 	void UsunElemntZDrzewa(int klucz);
 	void UsunDrzewo();
 	void SzukajDrogiDoPodanegoElemntu(int klucz);
-	node * korzen;
 };
 #endif // !drzewo#pragma once
 
