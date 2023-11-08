@@ -10,9 +10,23 @@ void Plik::Zapisz(string nazwaPliku)
 		ofstream plik(nazwaPliku + ".bin", ios::binary);
 		if (plik)
 		{
-			char* klucze = tree->ZwrocKlucze();
+			int rozmiar = tree->ZwrocIloscElementow();
+			char* klucze = new char[rozmiar];
+
+			for (size_t i = 0; i < rozmiar; i++)
+			{
+				klucze[i] = tree->korzen->klucz;
+
+				if (tree->korzen->lewo) {
+					tree->korzen = tree->korzen->lewo;
+				}
+				else if (tree->korzen->prawo) {
+					tree->korzen = tree->korzen->prawo;
+				}
+			}
+
 			try {
-				plik.write(klucze, sizeof(klucze));
+				plik.write(klucze, rozmiar);
 				cout << "Zapis do pliku zakonczony" << endl;
 			}
 			catch (exception e) {
@@ -48,6 +62,32 @@ void Plik::Wczytaj(string nazwaPliku)
 		plik.close();
 	}
 	else 
+	{
+		cerr << "Nie mozna otworzyc pliku!" << endl;
+	}
+}
+
+void Plik::WczytajZTxt(string nazwaPliku)
+{
+	ifstream plik(nazwaPliku + ".txt");
+	if (plik)
+	{
+		string linia;
+		while (getline(plik, linia))
+		{
+			for (size_t i = 0; i < linia.length(); i++)
+			{
+				if (linia[i] != ' ')
+				{
+					int temp = linia[i] - '0';
+					cout << "Linia: " << temp << endl;
+					tree->DodajElementDoDrzewa(temp);
+				}
+			}
+		}
+		plik.close();
+	}
+	else
 	{
 		cerr << "Nie mozna otworzyc pliku!" << endl;
 	}
