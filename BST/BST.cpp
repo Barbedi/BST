@@ -66,12 +66,17 @@ unsigned int Drzewo::ZwrocIloscElementow()
     return counter;
 }
 
-void Drzewo::UsunElemntZDrzewa(int klucz)
-{
+void Drzewo::UsunElemntZDrzewa(int klucz) {
     node* temp = korzen;
     node* parent = NULL;
 
-
+    
+    while (temp != NULL && klucz != temp->klucz) {
+        parent = temp;
+        temp = (klucz < temp->klucz) ? temp->lewo : temp->prawo;
+    }
+    if (temp == NULL) {
+        cout << "Nie znaleziono elementu" << endl;
     while (temp != NULL && klucz != temp->klucz) {
         parent = temp;
         temp = (klucz < temp->klucz) ? temp->lewo : temp->prawo;
@@ -80,8 +85,6 @@ void Drzewo::UsunElemntZDrzewa(int klucz)
         cout << "Nie znaleziono elementu" << endl;
         return;
     }
-
-    // Przypadek 1: Wêze³ nie ma dzieci
     if (temp->lewo == NULL && temp->prawo == NULL) {
         if (parent == NULL) {
             korzen = NULL;
@@ -94,7 +97,7 @@ void Drzewo::UsunElemntZDrzewa(int klucz)
         }
         delete temp;
     }
-    // Przypadek 2: Wêze³ ma jedno dziecko
+    // Przypadek 2: WÄ™zeÅ‚ ma jedno dziecko
     else if (temp->lewo != NULL) {
         if (parent == NULL) {
             korzen = temp->lewo;
@@ -119,7 +122,7 @@ void Drzewo::UsunElemntZDrzewa(int klucz)
         }
         delete temp;
     }
-    // Przypadek 3: Wêze³ ma oba dzieci
+    // Przypadek 3: WÄ™zeÅ‚ ma oba dzieci
     else {
         node* temp2 = temp->prawo;
         node* parent2 = temp;
@@ -139,6 +142,7 @@ void Drzewo::UsunElemntZDrzewa(int klucz)
 }
 
 void Drzewo::UsunDrzewo(){
+  
     while (korzen!=NULL) {
         UsunElemntZDrzewa(korzen->klucz);
     }
@@ -148,22 +152,24 @@ void Drzewo::SzukajDrogiDoPodanegoElemntu( int klucz)
 {
     node *temp = korzen;
     while (temp != NULL) {
-        if (klucz < temp->klucz)
+        if (klucz == temp->klucz)
         {
-            cout<<"znaleziono element: "<<endl;
-            break;
+			cout << "Znaleziono element" << endl;
+			break;
+            
         }
         else if (klucz < temp->klucz)
         {
-            cout << "L";
+            cout << "L" << endl;
 			temp = temp->lewo;
 		}
 		else  
 		{
-            cout << "P";
+            cout << "P"<<endl;
 			temp = temp->prawo;
 		}
         if (temp == NULL) {
+
            cout<<"nie znaleziono elementu"<<endl;
         }
 		
