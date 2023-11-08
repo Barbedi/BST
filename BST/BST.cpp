@@ -68,31 +68,74 @@ unsigned int Drzewo::ZwrocIloscElementow()
 
 void Drzewo::UsunElemntZDrzewa(int klucz)
 {
-    node*UElemnt = korzen;
-    while (UElemnt && UElemnt->klucz != klucz) {
-        UElemnt = (klucz < UElemnt->klucz) ? UElemnt->lewo : UElemnt->prawo;
-	}
-    if (!UElemnt) {
-        cout << "nie znaleziono elementu" << endl;
+    node* temp = korzen;
+    node* parent = NULL;
+
+
+    while (temp != NULL && klucz != temp->klucz) {
+        parent = temp;
+        temp = (klucz < temp->klucz) ? temp->lewo : temp->prawo;
+    }
+    if (temp == NULL) {
+        cout << "Nie znaleziono elementu" << endl;
         return;
     }
-    if (UElemnt->lewo && UElemnt->prawo)
-    {
-		node* temp = UElemnt->prawo;
-        while (temp->lewo) {
-			temp = temp->lewo;
-		}
-		UElemnt->klucz = temp->klucz;
-		UElemnt = temp;
-	}
-    node* temp2 = UElemnt;
-    UElemnt = (UElemnt->lewo) ? UElemnt->lewo : UElemnt->prawo;
-    delete temp2;
-    cout<< "usunieto element" << endl;
 
-
-
-
+    // Przypadek 1: Wêze³ nie ma dzieci
+    if (temp->lewo == NULL && temp->prawo == NULL) {
+        if (parent == NULL) {
+            korzen = NULL;
+        }
+        else if (parent->lewo == temp) {
+            parent->lewo = NULL;
+        }
+        else {
+            parent->prawo = NULL;
+        }
+        delete temp;
+    }
+    // Przypadek 2: Wêze³ ma jedno dziecko
+    else if (temp->lewo != NULL) {
+        if (parent == NULL) {
+            korzen = temp->lewo;
+        }
+        else if (parent->lewo == temp) {
+            parent->lewo = temp->lewo;
+        }
+        else {
+            parent->prawo = temp->lewo;
+        }
+        delete temp;
+    }
+    else if (temp->prawo != NULL) {
+        if (parent == NULL) {
+            korzen = temp->prawo;
+        }
+        else if (parent->lewo == temp) {
+            parent->lewo = temp->prawo;
+        }
+        else {
+            parent->prawo = temp->prawo;
+        }
+        delete temp;
+    }
+    // Przypadek 3: Wêze³ ma oba dzieci
+    else {
+        node* temp2 = temp->prawo;
+        node* parent2 = temp;
+        while (temp2->lewo != NULL) {
+            parent2 = temp2;
+            temp2 = temp2->lewo;
+        }
+        temp->klucz = temp2->klucz;
+        if (parent2->lewo == temp2) {
+            parent2->lewo = temp2->prawo;
+        }
+        else {
+            parent2->prawo = temp2->prawo;
+        }
+        delete temp2;
+    }
 }
 
 void Drzewo::UsunDrzewo(){

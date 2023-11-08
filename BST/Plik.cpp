@@ -66,3 +66,29 @@ void Plik::Wczytaj(string nazwaPliku)
 		cerr << "Nie mozna otworzyc pliku!" << endl;
 	}
 }
+
+void Plik::WczytajZTxt(string nazwaPliku)
+{
+	ifstream plik(nazwaPliku + ".txt");
+	if (plik)
+	{
+		string linia;
+		while (getline(plik, linia))
+		{
+			for (size_t i = 0; i < linia.length(); i++)
+			{
+				if (linia[i] != ' ')
+				{
+					int temp = linia[i] - '0';
+					cout << "Linia: " << temp << endl;
+					tree->DodajElementDoDrzewa(temp);
+				}
+			}
+		}
+		plik.close();
+	}
+	else
+	{
+		cerr << "Nie mozna otworzyc pliku!" << endl;
+	}
+}
