@@ -94,6 +94,7 @@ int main() {
             break;
 
         case 0:
+            d1.UsunDrzewo();
             cout << "Zakonczono program." << endl;
             break;
 
