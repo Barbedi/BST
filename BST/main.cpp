@@ -12,6 +12,7 @@ int main() {
 
     int c;
     do {
+        cout << endl;
         cout << "---Menu---" << endl;
         cout << "1. Dodaj element" << endl;
         cout << "2. Usun element" << endl;
