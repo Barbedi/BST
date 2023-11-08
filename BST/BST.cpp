@@ -70,74 +70,75 @@ void Drzewo::UsunElemntZDrzewa(int klucz) {
     node* temp = korzen;
     node* parent = NULL;
 
-    
+
     while (temp != NULL && klucz != temp->klucz) {
         parent = temp;
         temp = (klucz < temp->klucz) ? temp->lewo : temp->prawo;
     }
     if (temp == NULL) {
         cout << "Nie znaleziono elementu" << endl;
-    while (temp != NULL && klucz != temp->klucz) {
-        parent = temp;
-        temp = (klucz < temp->klucz) ? temp->lewo : temp->prawo;
-    }
-    if (temp == NULL) {
-        cout << "Nie znaleziono elementu" << endl;
-        return;
-    }
-    if (temp->lewo == NULL && temp->prawo == NULL) {
-        if (parent == NULL) {
-            korzen = NULL;
+        while (temp != NULL && klucz != temp->klucz) {
+            parent = temp;
+            temp = (klucz < temp->klucz) ? temp->lewo : temp->prawo;
         }
-        else if (parent->lewo == temp) {
-            parent->lewo = NULL;
+        if (temp == NULL) {
+            cout << "Nie znaleziono elementu" << endl;
+            return;
         }
+        if (temp->lewo == NULL && temp->prawo == NULL) {
+            if (parent == NULL) {
+                korzen = NULL;
+            }
+            else if (parent->lewo == temp) {
+                parent->lewo = NULL;
+            }
+            else {
+                parent->prawo = NULL;
+            }
+            delete temp;
+        }
+        // Przypadek 2: Węzeł ma jedno dziecko
+        else if (temp->lewo != NULL) {
+            if (parent == NULL) {
+                korzen = temp->lewo;
+            }
+            else if (parent->lewo == temp) {
+                parent->lewo = temp->lewo;
+            }
+            else {
+                parent->prawo = temp->lewo;
+            }
+            delete temp;
+        }
+        else if (temp->prawo != NULL) {
+            if (parent == NULL) {
+                korzen = temp->prawo;
+            }
+            else if (parent->lewo == temp) {
+                parent->lewo = temp->prawo;
+            }
+            else {
+                parent->prawo = temp->prawo;
+            }
+            delete temp;
+        }
+        // Przypadek 3: Węzeł ma oba dzieci
         else {
-            parent->prawo = NULL;
+            node* temp2 = temp->prawo;
+            node* parent2 = temp;
+            while (temp2->lewo != NULL) {
+                parent2 = temp2;
+                temp2 = temp2->lewo;
+            }
+            temp->klucz = temp2->klucz;
+            if (parent2->lewo == temp2) {
+                parent2->lewo = temp2->prawo;
+            }
+            else {
+                parent2->prawo = temp2->prawo;
+            }
+            delete temp2;
         }
-        delete temp;
-    }
-    // Przypadek 2: Węzeł ma jedno dziecko
-    else if (temp->lewo != NULL) {
-        if (parent == NULL) {
-            korzen = temp->lewo;
-        }
-        else if (parent->lewo == temp) {
-            parent->lewo = temp->lewo;
-        }
-        else {
-            parent->prawo = temp->lewo;
-        }
-        delete temp;
-    }
-    else if (temp->prawo != NULL) {
-        if (parent == NULL) {
-            korzen = temp->prawo;
-        }
-        else if (parent->lewo == temp) {
-            parent->lewo = temp->prawo;
-        }
-        else {
-            parent->prawo = temp->prawo;
-        }
-        delete temp;
-    }
-    // Przypadek 3: Węzeł ma oba dzieci
-    else {
-        node* temp2 = temp->prawo;
-        node* parent2 = temp;
-        while (temp2->lewo != NULL) {
-            parent2 = temp2;
-            temp2 = temp2->lewo;
-        }
-        temp->klucz = temp2->klucz;
-        if (parent2->lewo == temp2) {
-            parent2->lewo = temp2->prawo;
-        }
-        else {
-            parent2->prawo = temp2->prawo;
-        }
-        delete temp2;
     }
 }
 
